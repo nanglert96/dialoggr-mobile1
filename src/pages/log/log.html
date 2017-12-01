@@ -1,0 +1,76 @@
+<!-- THIS IS THE CARB PAGE   -->
+
+ <ion-navbar color ="secondary">
+      <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Log</ion-title>
+  </ion-navbar>
+
+<ion-content 
+  padding *ngIf="!auth.authenticated()">
+</ion-content>
+
+<ion-content padding *ngIf="auth.authenticated()">
+
+<h4 text-center>
+    What did you eat?
+</h4>
+
+<ion-item>
+  <ion-label floating> 
+  <ion-icon name="calendar"></ion-icon> 
+    Date
+  </ion-label>
+  <ion-datetime displayFormat="MMM/D/YYYY"pickerFormat= "MMM/D/YYYY" 
+    [(ngModel)]="myDate">
+  </ion-datetime>
+</ion-item>
+
+<ion-item>
+  <ion-label floating> 
+  <ion-icon name="time"></ion-icon> 
+    Time
+  </ion-label>
+  <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" 
+    [(ngModel)]="myDate">    
+  </ion-datetime>
+</ion-item>
+
+
+<ion-item>
+  <ion-label floating>
+    <ion-icon name="restaurant"></ion-icon> 
+      Meal Type
+  </ion-label>
+    <ion-select okText="Done" cancelText="Cancel" [(ngModel)]="mealType">
+      <ion-option value="breakfast">Breakfast</ion-option>
+      <ion-option value="lunch">Lunch</ion-option>
+      <ion-option value="dinner">Dinner</ion-option>
+      <ion-option value="snack">Snack</ion-option>
+    </ion-select>  
+</ion-item>
+
+<ion-item>
+  <ion-label floating>
+    <ion-icon name="restaurant"></ion-icon>
+      Carbs Eaten
+    </ion-label>
+    <ion-input type="number" 
+      [(ngModel)]="carbsModel" value="Carbs">
+    </ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label floating>
+    What did you eat?
+  </ion-label>
+    <ion-input type="text"></ion-input>
+</ion-item>    
+
+<button ion-button block round (click)="createCarbsEntry()"> 
+  Enter
+</button>
+
+
+</ion-content>

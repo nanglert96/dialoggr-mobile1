@@ -1,0 +1,59 @@
+
+<ion-header>
+  <ion-navbar color ="secondary">
+      <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Settings</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content *ngIf="!auth.authenticated()" padding>
+
+</ion-content>
+
+<ion-content *ngIf="auth.authenticated()" padding>
+
+  <h5 text-center>Notification Settings</h5>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Notifications</ion-label>
+      <ion-toggle [(ngModel)]="option1"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Bluetooth</ion-label>
+      <ion-toggle [(ngModel)]="option2"></ion-toggle>
+    </ion-item>
+  </ion-list>
+
+
+  <h5 text-center>Connected Devices</h5>
+  <ion-list>
+    <ion-item-sliding *ngFor="let device of devices">
+      <ion-item>
+        <ion-avatar item-left>
+          <img src="assets/icon/fitbit.png">
+        </ion-avatar>
+        <h2>{{device}}</h2>
+      </ion-item>
+      <ion-item-options slide="left">
+        <button ion-button color="danger" (click)="unregister(device)">
+          <ion-icon name="close"></ion-icon>
+          Remove
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <button ion-button block block round (click)="deviceType()">
+    Add a device
+    <ion-icon name="device"></ion-icon>
+  </button>
+
+  <div style="position: absolute; bottom: 0px; width: 90%"> </div>
+  <div style="text-align: center"></div>
+
+  <button ion-button outline block round (click)="auth.logout()">Logout</button>
+
+</ion-content>

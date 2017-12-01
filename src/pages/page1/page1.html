@@ -1,0 +1,63 @@
+<!-- THIS IS THE BGL PAGE -->
+
+<ion-navbar color ="secondary">
+  <button ion-button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+    <ion-title>Log</ion-title>
+</ion-navbar>
+
+<ion-content 
+  padding *ngIf="!auth.authenticated()">
+</ion-content>
+
+
+<ion-content padding *ngIf="auth.authenticated()">
+
+<h4 text-center>
+  What is your BGL?
+</h4>
+
+<ion-item>
+  <ion-label floating> 
+  <ion-icon name="calendar"></ion-icon> 
+    Date
+  </ion-label>
+  <ion-datetime displayFormat="MMM/D/YYYY"pickerFormat= "MMM/D/YYYY" 
+    [(ngModel)]="myDate">
+  </ion-datetime>
+</ion-item>
+
+<ion-item>
+  <ion-label floating> 
+  <ion-icon name="time"></ion-icon> 
+    Time
+  </ion-label>
+  <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" 
+    [(ngModel)]="myDate">    
+  </ion-datetime>
+</ion-item>
+
+<ion-item>
+  <ion-label floating>
+  <ion-icon name="water"></ion-icon>
+    Blood Glucose Level
+  </ion-label>
+    <ion-input type="number" 
+      [(ngModel)]="bglModel" value="">
+    </ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label floating>
+  <ion-icon name="medkit"></ion-icon>
+  Insulin Intake (u)
+  </ion-label>
+    <ion-input type="number" value=""></ion-input>
+</ion-item>
+
+<button ion-button block round (click)="createBglEntry()"> 
+  Enter
+</button>
+
+</ion-content>
