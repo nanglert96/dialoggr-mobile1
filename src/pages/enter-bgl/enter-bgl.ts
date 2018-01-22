@@ -1,4 +1,4 @@
-// SLEEP PAGE
+// THIS IS THE BGL PAGE
 
 import { Component } from '@angular/core';
 import { Entry } from '../../models/entry';
@@ -6,30 +6,31 @@ import { Api } from  '../../providers/api-service/api-service';
 import { NavController, NavParams } from 'ionic-angular';
 import { TrendPage } from '../trend/trend';
 import { AccountPage } from '../account/account';
-import { TabsPage } from '../pages/tabs/tabs';
+import { TabsPage } from '../tabs/tabs';
 import { AuthService } from '../../providers/auth-service/auth-service';
 import { LoadingController } from 'ionic-angular';
 import { LogPage } from '../log/log';
-import { Page1 } from '../page1/page1';
+import { EnterSleepPage } from '../enter-sleep/enter-sleep';
+
 
 @Component({
-  selector: 'page-page2',
-  templateUrl: 'page2.html'
+  selector: 'page-enter-bgl',
+  templateUrl: 'enter-bgl.html'
 })
+export class EnterBGLPage {
 
-export class Page2 {
-
-  tab1Root: any = Page1;
+  tab1Root: any = EnterBGLPage;
   tab2Root: any = LogPage;
-  tab3Root: any = Page2;
+  tab3Root: any = EnterSleepPage;
   tab4Root: any = TrendPage;
 
-  sleepModel;
-  // myDate: String = new Date().getTimezoneOffset().toISOString;
-  endTime: String = new Date().toISOString();
-  myDate: String = new Date().toISOString();
-
+  bglModel;
   entries: Entry[] = [];
+  // myDate: number = new Date().getTimezoneOffset();
+  myDate: Date = new Date();
+
+
+
 
   constructor(
     public navCtrl: NavController,
@@ -51,22 +52,22 @@ export class Page2 {
     loader.present();
   }
 
-  createSleepEntry(){
+  createBglEntry(){
     let loader = this.loadingCtrl.create({content: "hang on a sec..."});
     loader.present();
 
     let entry: Entry = {
       user: this.auth.user.user_id,
-      type: 'sleep',
-      start: this.myDate,
-      end: this.endTime, 
+      type: 'bgl',
+      value: this.bglModel.valueOf('bglModel'), //.value,
+      start: this.myDate
     };
-
+    
+    console.log(entry);
     this.api.createEntry(entry).subscribe(res => {
       console.log(res);
       loader.dismiss();
     });
-  
   }
 
 }

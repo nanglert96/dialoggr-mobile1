@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
-import { Page1 } from '../page1/page1';
+import { EnterBGLPage } from '../enter-bgl/enter-bgl';
 
 /*
   Generated class for the Intro page.

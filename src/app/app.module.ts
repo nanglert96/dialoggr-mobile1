@@ -1,11 +1,11 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { Http } from '@angular/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
+import { IonicStorageModule } from '@ionic/storage';
 import { FitBitService } from '../providers/fitbit-service/fitbit-service';
 import { MyApp } from './app.component';
-import { Page1 } from '../pages/page1/page1';
-import { Page2 } from '../pages/page2/page2';
+import { EnterBGLPage } from '../pages/enter-bgl/enter-bgl';
+import { EnterSleepPage } from '../pages/enter-sleep/enter-sleep';
 import { BloodGlucosePage } from '../pages/blood-glucose/blood-glucose';
 import { SleepPage } from '../pages/sleep/sleep';
 import { FoodPage } from '../pages/food/food';
@@ -21,7 +21,9 @@ import { ProfilePage } from '../pages/profile/profile';
 import { IntroPage } from '../pages/intro/intro';
 import { LogPage } from '../pages/log/log';
 import { StressPage } from '../pages/stress/stress';
-import { MillisecondsToHoursPipe } from '../pipes/milliseconds-to-hours';
+import { MillisecondsToHoursPipe } from '../pipes/milliseconds-to-hours/milliseconds-to-hours';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
 
 let storage: Storage = new Storage();
 
@@ -35,8 +37,8 @@ export function getAuthHttp(http) {
 @NgModule({
   declarations: [
     MyApp,
-    Page1,
-    Page2,
+    EnterBGLPage,
+    EnterSleepPage,
     BloodGlucosePage,
     SleepPage,
     FoodPage,
@@ -52,13 +54,14 @@ export function getAuthHttp(http) {
     MillisecondsToHoursPipe
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    Page1,
-    Page2,
+    EnterBGLPage,
+    EnterSleepPage,
     BloodGlucosePage,
     SleepPage,
     FoodPage,
@@ -86,7 +89,9 @@ export function getAuthHttp(http) {
     },
     Storage,
     Api,
-    FitBitService
+    FitBitService,
+    StatusBar,
+    SplashScreen
   ]
 })
 export class AppModule {}

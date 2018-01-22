@@ -3,13 +3,13 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { TrendPage } from '../trend/trend';
 import { AccountPage } from '../account/account';
-import { TabsPage } from '../pages/tabs/tabs';
+import { TabsPage } from '../tabs/tabs';
 import { AuthService } from '../../providers/auth-service/auth-service';
 import { LoadingController } from 'ionic-angular';
 import { Entry } from '../../models/entry';
 import { Api } from  '../../providers/api-service/api-service';
-import { Page1 } from '../page1/page1';
-import { Page2 } from '../page2/page2';
+import { EnterBGLPage } from '../enter-bgl/enter-bgl';
+import { EnterSleepPage } from '../enter-sleep/enter-sleep';
 
 
 @Component({
@@ -18,14 +18,14 @@ import { Page2 } from '../page2/page2';
 })
 export class LogPage {
 
-  tab1Root: any = Page1;
+  tab1Root: any = EnterBGLPage;
   tab2Root: any = LogPage;
-  tab3Root: any = Page2;
+  tab3Root: any = EnterSleepPage;
   tab4Root: any = TrendPage;
 
   carbsModel;
   entries: Entry[] = [];
-  myDate: String = new Date().toISOString();
+  myDate: Date = new Date();
 
 
   constructor(

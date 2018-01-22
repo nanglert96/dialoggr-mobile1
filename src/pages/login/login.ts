@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { TrendPage } from '../trend/trend';
 import { AccountPage } from '../account/account';
-import { TabsPage } from '../pages/tabs/tabs';
+import { TabsPage } from '../tabs/tabs';
 import { AuthService } from '../../providers/auth-service/auth-service';
 
 @Component({

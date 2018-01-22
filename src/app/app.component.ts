@@ -1,11 +1,12 @@
 import { Component, ViewChild }    from '@angular/core';
 import { Chart }                   from 'chart.js';
 import { Nav, Platform }           from 'ionic-angular';
-import { StatusBar, Splashscreen } from 'ionic-native';
+import { StatusBar }               from '@ionic-native/status-bar';
+import { SplashScreen }            from '@ionic-native/splash-screen';
 import { Storage }                 from '@ionic/storage';
 import { LoadingController }       from 'ionic-angular';
-import { Page1 }                   from '../pages/page1/page1';
-import { Page2 }                   from '../pages/page2/page2';
+import { EnterBGLPage }            from '../pages/enter-bgl/enter-bgl';
+import { EnterSleepPage }          from '../pages/enter-sleep/enter-sleep';
 import { BloodGlucosePage }        from '../pages/blood-glucose/blood-glucose';
 import { SleepPage }               from '../pages/sleep/sleep';
 import { FoodPage }                from '../pages/food/food';
@@ -13,12 +14,12 @@ import { SettingsPage }            from '../pages/settings/settings';
 import { AuthService }             from '../providers/auth-service/auth-service';
 import { FitBitService }           from '../providers/fitbit-service/fitbit-service';
 import { Auth0Cordova }            from '@auth0/cordova';
-import { ApiService }              from '../providers/api-service/api-service'
+import { Api }                     from '../providers/api-service/api-service'
 import { TabsPage }                from '../pages/tabs/tabs';
 import { TrendPage }               from '../pages/trend/trend';
 import { AccountPage }             from '../pages/account/account';
 import { PingPage }                from '../pages/ping/ping';
-import { AuthConfig, AuthHttp }    from 'angular2-jwt';
+
 import { ProfilePage }             from '../pages/profile/profile';
 import { IntroPage }               from '../pages/intro/intro';
 import { LogPage }                 from '../pages/log/log';
@@ -40,12 +41,15 @@ export class MyApp {
     public loadingCtrl: LoadingController,
     public storage: Storage,
     private auth: AuthService,
-    private fitbit: FitBitService) {
+    private fitbit: FitBitService,
+    private statusBar: StatusBar,
+    private splashScreen: SplashScreen)
+     {
 
       platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      StatusBar.styleDefault();
+      statusBar.styleDefault();
 
       // Schedule a token refresh on app start up
       auth.startupTokenRefresh();
@@ -74,8 +78,8 @@ export class MyApp {
       this.storage.get('introShown').then((result) => {
 
         if(result){
-          this.rootPage = Page1;
-          console.log("go to page1");
+          this.rootPage = EnterBGLPage;
+          console.log("go to EnterBGLPage");
         } else {
           this.rootPage = IntroPage;
           this.storage.set('introShown', true);
@@ -88,8 +92,8 @@ export class MyApp {
 
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      StatusBar.styleDefault();
-      Splashscreen.hide();
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
     });
   }
 

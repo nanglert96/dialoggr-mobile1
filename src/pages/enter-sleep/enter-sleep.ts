@@ -1,4 +1,4 @@
-// THIS IS THE BGL PAGE
+// SLEEP PAGE
 
 import { Component } from '@angular/core';
 import { Entry } from '../../models/entry';
@@ -6,31 +6,30 @@ import { Api } from  '../../providers/api-service/api-service';
 import { NavController, NavParams } from 'ionic-angular';
 import { TrendPage } from '../trend/trend';
 import { AccountPage } from '../account/account';
-import { TabsPage } from '../pages/tabs/tabs';
+import { TabsPage } from '../tabs/tabs';
 import { AuthService } from '../../providers/auth-service/auth-service';
 import { LoadingController } from 'ionic-angular';
 import { LogPage } from '../log/log';
-import { Page2 } from '../page2/page2';
-
+import { EnterBGLPage } from '../enter-bgl/enter-bgl';
 
 @Component({
-  selector: 'page-page1',
-  templateUrl: 'page1.html'
+  selector: 'page-enter-sleep',
+  templateUrl: 'enter-sleep.html'
 })
-export class Page1 {
 
-  tab1Root: any = Page1;
+export class EnterSleepPage {
+
+  tab1Root: any = EnterBGLPage;
   tab2Root: any = LogPage;
-  tab3Root: any = Page2;
+  tab3Root: any = EnterSleepPage;
   tab4Root: any = TrendPage;
 
-  bglModel;
+  sleepModel;
+  // myDate: String = new Date().getTimezoneOffset().toISOString;
+  endTime: Date = new Date();
+  myDate: Date = new Date();
+
   entries: Entry[] = [];
-  // myDate: number = new Date().getTimezoneOffset();
-  myDate: String = new Date().toISOString();
-
-
-
 
   constructor(
     public navCtrl: NavController,
@@ -52,22 +51,22 @@ export class Page1 {
     loader.present();
   }
 
-  createBglEntry(){
+  createSleepEntry(){
     let loader = this.loadingCtrl.create({content: "hang on a sec..."});
     loader.present();
 
     let entry: Entry = {
       user: this.auth.user.user_id,
-      type: 'bgl',
-      value: this.bglModel.valueOf('bglModel'), //.value,
-      start: this.myDate
+      type: 'sleep',
+      start: this.myDate,
+      end: this.endTime, 
     };
-    
-    console.log(entry);
+
     this.api.createEntry(entry).subscribe(res => {
       console.log(res);
       loader.dismiss();
     });
+  
   }
 
 }

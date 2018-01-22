@@ -1,10 +1,10 @@
 import { Injectable }               from '@angular/core';
 import { Http, Response, Headers }  from '@angular/http';
 import { Observable }               from 'rxjs/Rx';
-import { AuthService as Auth }      from './auth-service/auth-service';
+import { AuthService as Auth }      from '../auth-service/auth-service';
 import { Storage }                  from '@ionic/storage';
-import { Entry }                    from '../models/entry';
-import { User }                     from '../models/user';
+import { Entry }                    from '../../models/entry';
+import { User }                     from '../../models/user';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';

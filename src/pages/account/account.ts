@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { LogPage } from '../pages/log/log';
-import { TrendPage } from '../pages/trend/trend';
-import { TabsPage } from '../pages/tabs/tabs';
+import { LogPage } from '../log/log';
+import { TrendPage } from '../trend/trend';
+import { TabsPage } from '../tabs/tabs';
 import { AuthService } from '../../providers/auth-service/auth-service';
 import { LoadingController } from 'ionic-angular';
 

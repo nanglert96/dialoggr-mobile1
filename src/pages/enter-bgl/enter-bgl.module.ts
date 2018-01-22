@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { Page2Page } from './page2';
+import { EnterBGLPage } from './enter-bgl';
 
 @NgModule({
   declarations: [
-    Page2Page,
+    EnterBGLPage,
   ],
   imports: [
-    IonicPageModule.forChild(Page2Page),
+    IonicPageModule.forChild(EnterBGLPage),
   ],
 })
-export class Page2PageModule {}
+export class EnterBGLPageModule {}

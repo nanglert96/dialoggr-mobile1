@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { LogPage } from '../pages/log/log';
-import { AccountPage } from '../pages/account/account';
-import { TabsPage } from '../pages/tabs/tabs';
+import { LogPage } from '../log/log';
+import { AccountPage } from '../account/account';
+import { TabsPage } from '../tabs/tabs';
 import { AuthService } from '../../providers/auth-service/auth-service';
 import { LoadingController } from 'ionic-angular';
 import { Chart } from 'chart.js';

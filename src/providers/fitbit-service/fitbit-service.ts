@@ -2,12 +2,13 @@ import { Injectable, NgZone } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { Platform } from 'ionic-angular';
-import { InAppBrowser, InAppBrowserEvent } from 'ionic-native';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { InAppBrowserEvent } from '@ionic-native/in-app-browser-event';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 import { Moment } from 'moment';
-import { AuthService } from './auth-service/auth-service';
-import { User } from '../models/user';
+import { AuthService } from '../auth-service/auth-service';
+import { User } from '../../models/user';
 
 
 export interface FitBitAccessToken {
