@@ -1,9 +1,9 @@
 export class Entry{
   user: string;
   type: string;
-  value: number;
+  value?: number;
   start: Date;
-  end: Date;
-  description: string;
+  end?: Date;
+  description?: string;
 
 }

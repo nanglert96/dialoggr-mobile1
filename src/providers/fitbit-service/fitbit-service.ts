@@ -2,8 +2,7 @@ import { Injectable, NgZone } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { Platform } from 'ionic-angular';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { InAppBrowserEvent } from '@ionic-native/in-app-browser-event';
+import { InAppBrowser, InAppBrowserEvent, InAppBrowserObject} from '@ionic-native/in-app-browser';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 import { Moment } from 'moment';
@@ -140,9 +139,9 @@ export class FitBitService {
   private refresh_token: string;
   private user_id: string;
   private refreshSubscription: any;
-  private browser: InAppBrowser;
+  private browser: InAppBrowserObject;
 
-  constructor(public http: Http, public platform: Platform, public zone: NgZone, public auth: AuthService) {
+  constructor(public http: Http, public platform: Platform, public zone: NgZone, public auth: AuthService, private iab: InAppBrowser) {
 
     // provide values for connecting to the FitBit API
     this.auth_url  = 'https://www.fitbit.com/oauth2/authorize?';
@@ -165,7 +164,7 @@ export class FitBitService {
       url += `client_id=${this.client_id}&`;
       url += 'response_type=code&';
       url += 'scope=' + this.scope.join('%20');
-      this.browser = new InAppBrowser(url, '_blank', 'location=yes');
+      this.browser = this.iab.create(url, '_blank', 'location=yes');
       return this.browser.on('loadstart');
     }).flatMap((ev: InAppBrowserEvent) => {
       if (ev.url.indexOf('https://api.dialoggr.com/fitbit') === 0) {

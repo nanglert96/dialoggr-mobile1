@@ -1,5 +1,5 @@
 import { NgModule, ErrorHandler } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpModule } from '@angular/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
 import { FitBitService } from '../providers/fitbit-service/fitbit-service';
@@ -25,14 +25,14 @@ import { MillisecondsToHoursPipe } from '../pipes/milliseconds-to-hours/millisec
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-let storage: Storage = new Storage();
+// let storage: Storage = new Storage();
 
-export function getAuthHttp(http) {
-  return new AuthHttp(new AuthConfig({
-    globalHeaders: [{'Accept': 'application/json'}],
-    tokenGetter: (() => storage.get('id_token'))
-  }), http);
-}
+// export function getAuthHttp(http) {
+//   return new AuthHttp(new AuthConfig({
+//     globalHeaders: [{'Accept': 'application/json'}],
+//     tokenGetter: (() => storage.get('id_token'))
+//   }), http);
+// }
 
 @NgModule({
   declarations: [
@@ -78,11 +78,11 @@ export function getAuthHttp(http) {
   ],
   providers: [
     AuthService,
-    {
-      provide: AuthHttp,
-      useFactory: getAuthHttp,
-      deps: [Http]
-    },
+    // {
+    //   provide: AuthHttp,
+    //   useFactory: getAuthHttp,
+    //   deps: [Http]
+    // },
     {
       provide: ErrorHandler,
       useClass: IonicErrorHandler
